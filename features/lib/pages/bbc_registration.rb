@@ -10,6 +10,10 @@ class BBC_Registration
   DAY_DOB_INPUT_ID = '#day-input'
   MONTH_DOB_INPUT_ID = '#month-input'
   YEAR_DOB_INPUT_ID = '#year-input'
+
+  INCORRECT_FORMAT_EMAIL = 'hsheikh@=spartaglobal.com'
+
+
   SUBMIT_BUTTON_ID = '#submit-button'
 
 
@@ -19,11 +23,17 @@ class BBC_Registration
     sleep 2
   end
 
-  def enter_day
+  def enter_dob
     fill_in 'dateOfBirthDay', :with => '01'
     fill_in 'dateOfBirthMonth', :with => '08'
     fill_in 'dateOfBirthYear', :with => '1992'
     sleep 3
+  end
+
+  def enter_incorrect_dob
+    fill_in 'dateOfBirthDay', :with => '972'
+    fill_in 'dateOfBirthMonth', :with => '14'
+    fill_in 'dateOfBirthYear', :with => '1'
   end
 
   def click_dob_button
@@ -34,6 +44,10 @@ class BBC_Registration
 
   def enter_email
     fill_in 'email', :with => email
+  end
+
+  def enter_incorrect_email
+    fill_in 'email', :with => INCORRECT_FORMAT_EMAIL
   end
 
   def register_password
@@ -62,7 +76,16 @@ class BBC_Registration
 
   def verify_registration
     has_content?("Thanks. You're now signed in.")
+  end
 
+  #Error message methods
+
+  def incorrect_dob
+    page.has_content?("Oops, that date doesn't look right.")
+  end
+
+  def incorrect_email_format_error
+    page.has_content?("Sorry, that email doesn’t look right.")
   end
 
 

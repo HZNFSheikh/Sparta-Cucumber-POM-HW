@@ -22,7 +22,6 @@ class BBC_Homepage
 
   def click_go_to_register
     find(REGISTER_LINK_CLASSNAME).click
-    sleep 2
   end
 
 
