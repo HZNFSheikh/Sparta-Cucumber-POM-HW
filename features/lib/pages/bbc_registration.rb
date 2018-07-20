@@ -7,14 +7,15 @@ class BBC_Registration
 
   #Constants
 
-  DAY_DOB_INPUT_ID = '#day-input'
-  MONTH_DOB_INPUT_ID = '#month-input'
-  YEAR_DOB_INPUT_ID = '#year-input'
+  DAY_DOB_NAME = 'dateOfBirthDay'
+  MONTH_DOB_NAME = 'dateOfBirthMonth'
+  YEAR_DOB_NAME = 'dateOfBirthYear'
 
   INCORRECT_FORMAT_EMAIL = 'hsheikh@=spartaglobal.com'
 
 
   SUBMIT_BUTTON_ID = '#submit-button'
+  SHORT_PASSWORD = 'pass'
 
 
 
@@ -23,11 +24,10 @@ class BBC_Registration
     sleep 2
   end
 
-  def enter_dob
-    fill_in 'dateOfBirthDay', :with => '01'
-    fill_in 'dateOfBirthMonth', :with => '08'
-    fill_in 'dateOfBirthYear', :with => '1992'
-    sleep 3
+  def enter_dob (day,month,year) 
+    fill_in (DAY_DOB_NAME, :with => "#{day}")
+    fill_in (MONTH_DOB_NAME, :with => "#{month}")
+    fill_in (YEAR_DOB_NAME, :with => "#{year}")
   end
 
   def enter_incorrect_dob

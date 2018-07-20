@@ -19,8 +19,8 @@ class BBC_Login
     fill_in USERNAME_INPUT, with: DUMMY_EMAIL
   end
 
-  def fill_password
-    fill_in PASSWORD_INPUT, with: DUMMY_PASSWORD
+  def fill_password(password)
+    fill_in PASSWORD_INPUT, with: "#{password}"
     sleep 1
   end
 
@@ -51,10 +51,6 @@ class BBC_Login
   #  Error message methods
   def incorrect_email_error
     page.has_content?('Sorry, we can’t find an account with that email.')
-  end
-
-  def incorrect_password_error
-    page.has_content?('match')
   end
 
   def missing_field_error
@@ -100,6 +96,10 @@ class BBC_Login
   def fill_short_password
     fill_in PASSWORD_INPUT, with: SHORT_PASSWORD
     sleep 1
+  end
+
+  def password_error_message
+    find('#form-message-password').text
   end
 
 end

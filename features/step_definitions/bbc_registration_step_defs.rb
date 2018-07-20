@@ -9,8 +9,8 @@ Given("I select the correct age option") do
   @bbc_site.bbc_registration.click_13_or_over
 end
 
-Given("I input an incorrect date of birth") do
-  @bbc_site.bbc_registration.enter_incorrect_dob
+Given(/^I input an incorrect date of birth (.*) (.*) (.*)$/) do |day,month,year|
+  @bbc_site.bbc_registration.(day,month,year)
 end
 
 When("I submit the date of birth") do

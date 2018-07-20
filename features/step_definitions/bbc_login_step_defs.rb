@@ -9,8 +9,8 @@ Given("I input incorrect username details") do
 
 end
 
-Given("I input incorrect password details") do
-  @bbc_site.bbc_login.fill_wrong_password
+Given(/^I input incorrect password details (.*)$/) do |password|
+  @bbc_site.bbc_login.fill_password(password)
 end
 
 When("I try to Login") do
@@ -25,6 +25,6 @@ Given("I input correct username details") do
   @bbc_site.bbc_login.fill_email
 end
 
-Then("I receive an error saying the password doesn't match") do
-  expect(@bbc_site.bbc_login.incorrect_password_error)
+Then(/^I receive the following error: (.*)/) do |error|
+  expect(@bbc_site.bbc_login.password_error_message).to eq "#{error}"
 end
